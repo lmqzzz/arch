@@ -1,0 +1,42 @@
+# Based on ~/arch/conf/alacritty.toml, tuned for this PC
+
+[general]
+working_directory = 'C:\Users\Admin'
+
+[colors.primary]
+background = '#000000'
+
+[env]
+TERM = 'xterm-256color'
+MSYSTEM = 'UCRT64'
+CHERE_INVOKING = '1'
+
+[font]
+size = 15
+
+[font.glyph_offset]
+x = -1
+y = -4
+
+[font.normal]
+family = 'JetBrainsMono NF'
+
+[font.offset]
+x = -2
+y = -7
+
+[[mouse.bindings]]
+action = 'Paste'
+mouse = 'Right'
+
+[selection]
+save_to_clipboard = true
+
+[terminal.shell]
+program = 'C:\msys64\usr\bin\fish.exe'
+args = ['-l']
+
+[window]
+decorations = 'none'
+opacity = 1.0
+startup_mode = 'Maximized'

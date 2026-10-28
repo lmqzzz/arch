@@ -1,0 +1,60 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyOnSelect": true,
+    "defaultProfile": "{3f1c8a2e-6b7d-4e59-9a1f-0d2c4b8e7a61}",
+    "keybindings": [],
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults":
+        {
+            "background": "#000000",
+            "font":
+            {
+                "face": "JetBrainsMono NF",
+                "size": 13
+            }
+        },
+        "list":
+        [
+            {
+                "background": "#000000",
+                "commandline": "C:\\msys64\\usr\\bin\\env.exe MSYSTEM=UCRT64 CHERE_INVOKING=1 /usr/bin/fish -l",
+                "font":
+                {
+                    "face": "JetBrainsMono NF",
+                    "size": 13
+                },
+                "guid": "{3f1c8a2e-6b7d-4e59-9a1f-0d2c4b8e7a61}",
+                "icon": "C:\\msys64\\ucrt64.ico",
+                "name": "fish",
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            }
+        ]
+    },
+    "schemes": [],
+    "themes": []
+}
