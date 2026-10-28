@@ -12,6 +12,7 @@ I've already said yes to: installing software from winget, MSYS2/pacman and GitH
 | `windows-terminal.json` | `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json` |
 | `config.fish` | `~/.config/fish/config.fish` |
 | `logo.jpg` | source image for the fastfetch greeting logo (`~/.ans`) |
+| `taskbarhider/settings.ini` | `%LOCALAPPDATA%\Programs\TaskbarHider\settings.ini` |
 
 ## Steps
 
@@ -48,6 +49,15 @@ The font installs as family **`JetBrainsMono NF`** (not "JetBrainsMono Nerd Font
 ### 4. Terminal configs
 - Copy `conf/windows/alacritty.toml` to `%APPDATA%\alacritty\alacritty.toml`. Fix `[general] working_directory` if my Windows username isn't `Admin`. Validate with `alacritty migrate --dry-run -c <file>`.
 - Copy `conf/windows/windows-terminal.json` to the Windows Terminal `LocalState\settings.json` (create the folder if it's missing). It adds a "fish" profile set as default, black background, JetBrainsMono NF, copyOnSelect.
+
+### 4b. Taskbar: show only when the mouse is in the bottom third
+I use StartAllBack (install it myself first if it's missing) and **TaskbarHider** (`VitaliyMubarakov/TaskbarHider`), which fades the taskbar out when the mouse goes above a line and shows it again below it.
+- Download release `1,1` (yes, with a comma): `gh release download 1,1 -R VitaliyMubarakov/TaskbarHider -p taskbar.zip`. The v1.1 `TaskbarHider.exe` I reviewed has SHA256 `C77BD9381414EEBB3F697EA0056221459CE33C8CD7405E1EF4663B74657A7AD6` — if a newer release exists or the hash differs, read the source in the repo before using it.
+- Extract to `%LOCALAPPDATA%\Programs\TaskbarHider\` and replace its `settings.ini` with `conf/windows/taskbarhider/settings.ini` (`screenPercentToHide = 33` = bottom third, `mouseAboveMs = 150` = hide 0.15s after the mouse leaves).
+- **Turn Windows taskbar auto-hide OFF** — TaskbarHider hides a docked taskbar itself and fights with auto-hide. (`SHAppBarMessage(ABM_SETSTATE=10)` with `lParam = ABS_ALWAYSONTOP (2)`, or the toggle in Windows/StartAllBack taskbar settings.)
+- Start it **from its own folder** (it reads `settings.ini` relative to the working directory): `Start-Process TaskbarHider.exe -WorkingDirectory <its folder>`.
+- Its `AddStartup.bat` creates the Startup-folder shortcut (with the right working directory) — I've already approved running it.
+- Don't build my own taskbar helper instead: toggling auto-hide made StartAllBack draw a blurry taskbar instead of its normal transparent one.
 
 ### 5. Verify
 Test from a shell whose PATH is reloaded from the registry (`[Environment]::GetEnvironmentVariable('Path','Machine')+';'+...('User')`) — a shell started before the installs has a stale PATH and fish will report `git`/`sd` missing when they're actually fine. Put fish test commands in a `.fish` file and `source` it; PowerShell 5.1 mangles quotes passed inline to fish/bash.
