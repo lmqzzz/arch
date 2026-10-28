@@ -25,6 +25,12 @@ family = 'JetBrainsMono NF'
 x = -2
 y = -7
 
+# Alacritty has no tabs: Ctrl+T opens a new window instead (like Cmd+T on the Mac)
+[[keyboard.bindings]]
+key = 'T'
+mods = 'Control'
+action = 'CreateNewWindow'
+
 [[mouse.bindings]]
 action = 'Paste'
 mouse = 'Right'

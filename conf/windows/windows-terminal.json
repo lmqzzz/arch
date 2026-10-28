@@ -1,10 +1,25 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [],
+    "actions":
+    [
+        {
+            "command":
+            {
+                "action": "newTab"
+            },
+            "id": "User.newTab"
+        }
+    ],
     "copyOnSelect": true,
     "defaultProfile": "{3f1c8a2e-6b7d-4e59-9a1f-0d2c4b8e7a61}",
-    "keybindings": [],
+    "keybindings":
+    [
+        {
+            "id": "User.newTab",
+            "keys": "ctrl+t"
+        }
+    ],
     "newTabMenu":
     [
         {
