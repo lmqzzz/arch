@@ -13,6 +13,7 @@ I've already said yes to: installing software from winget, MSYS2/pacman and GitH
 | `config.fish` | `~/.config/fish/config.fish` |
 | `logo.jpg` | source image for the fastfetch greeting logo (`~/.ans`) |
 | `taskbarhider/settings.ini` | `%LOCALAPPDATA%\Programs\TaskbarHider\settings.ini` |
+| `autohotkey/AppHotkeys.ahk` | `~\Documents\AutoHotkey\AppHotkeys.ahk` |
 
 ## Steps
 
@@ -58,6 +59,14 @@ I use StartAllBack (install it myself first if it's missing) and **TaskbarHider*
 - Start it **from its own folder** (it reads `settings.ini` relative to the working directory): `Start-Process TaskbarHider.exe -WorkingDirectory <its folder>`.
 - Its `AddStartup.bat` creates the Startup-folder shortcut (with the right working directory) — I've already approved running it.
 - Don't build my own taskbar helper instead: toggling auto-hide made StartAllBack draw a blurry taskbar instead of its normal transparent one.
+
+### 4c. App hotkeys (AutoHotkey)
+- `winget install AutoHotkey.AutoHotkey` (v2).
+- Copy `conf/windows/autohotkey/AppHotkeys.ahk` to `~\Documents\AutoHotkey\` and start it: `& "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe" <script>`.
+- Hotkeys: Alt+L League of Legends, Alt+S Steam, Alt+/ Brave, Alt+D Discord, Alt+Y YouTube Music (each focuses the app if it's open, otherwise launches it); Alt+Enter opens a new Alacritty window and switches to it.
+- Paths assume default install locations; fix them in the script if an app lives elsewhere.
+- Alt+Enter overrides the fullscreen toggle in games while the script runs.
+- Ask me before adding it to the Startup folder.
 
 ### 5. Verify
 Test from a shell whose PATH is reloaded from the registry (`[Environment]::GetEnvironmentVariable('Path','Machine')+';'+...('User')`) — a shell started before the installs has a stale PATH and fish will report `git`/`sd` missing when they're actually fine. Put fish test commands in a `.fish` file and `source` it; PowerShell 5.1 mangles quotes passed inline to fish/bash.
